@@ -44,7 +44,7 @@
 
         async void OnPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "Renderer")
+            if (e.PropertyName == "Renderer" || (e.PropertyName == "IsVisible" && _associatedObject.IsVisible))
             {
                 await StartAnimationAsync();
             }

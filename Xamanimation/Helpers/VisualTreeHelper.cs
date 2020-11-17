@@ -14,40 +14,21 @@
             {
                 return element as T;
             }
-            else
+            if (element.Parent != null)
             {
-                if (element.Parent != null)
-                {
-                    return element.Parent.GetParent<T>();
-                }
-
-                return default(T);
+                return element.Parent.GetParent<T>();
             }
+            return default(T);
         }
 
         public static IEnumerable<T> GetChildren<T>(this Element element) where T : Element
         {
             var properties = element.GetType().GetRuntimeProperties();
-
             var contentProperty = properties.FirstOrDefault(w => w.Name == "Content");
-            if (contentProperty != null)
-            {
-                if (contentProperty.GetValue(element) is Element content)
-                {
-                    if (content is T)
-                    {
-                        yield return content as T;
-                    }
-                    foreach (var child in content.GetChildren<T>())
-                    {
-                        yield return child;
-                    }
-                }
-            }
-            else
+            if (contentProperty == null || !Transition.GetCascadeTransition(element))
             {
                 var childrenProperty = properties.FirstOrDefault(w => w.Name == "Children");
-                if (childrenProperty != null)
+                if (childrenProperty != null && Transition.GetCascadeTransition(element))
                 {
                     IEnumerable children = childrenProperty.GetValue(element) as IEnumerable;
                     foreach (var child in children)
@@ -64,6 +45,20 @@
                                 yield return childVisual;
                             }
                         }
+                    }
+                }
+            }
+            else
+            {
+                if (contentProperty.GetValue(element) is Element contentElement)
+                {
+                    if (contentElement is T)
+                    {
+                        yield return contentElement as T;
+                    }
+                    foreach (var t in contentElement.GetChildren<T>())
+                    {
+                        yield return t;
                     }
                 }
             }

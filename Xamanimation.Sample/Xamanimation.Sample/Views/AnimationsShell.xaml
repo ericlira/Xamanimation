@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Shell 
+<Shell
+    x:Class="Xamanimation.Sample.Views.AnimationsShell"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:xamanimation="clr-namespace:Xamanimation;assembly=Xamanimation"
-    x:Class="Xamanimation.Sample.Views.AnimationsShell"
     Title="Xamanimation">
     <Shell.Resources>
         <ResourceDictionary>
@@ -13,7 +13,7 @@
                 <Setter Property="FontSize" Value="18" />
                 <Setter Property="Margin" Value="12" />
             </Style>
-            
+
             <Style TargetType="Button">
                 <Setter Property="Visual" Value="Material" />
                 <Setter Property="WidthRequest" Value="100" />
@@ -22,63 +22,59 @@
             <xamanimation:BounceInAnimation
                 x:Key="BounceInAnimation"
                 Target="{x:Reference BounceBox}"
-                Duration="500"/>
+                Duration="500" />
 
             <xamanimation:BounceOutAnimation
                 x:Key="BounceOutAnimation"
                 Target="{x:Reference BounceBox}"
-                Duration="250"/>
+                Duration="250" />
 
             <xamanimation:FadeToAnimation
                 x:Key="FadeToAnimation"
+                Opacity="0"
                 Target="{x:Reference FadeBox}"
-                Duration="2000"
-                Opacity="0"/>
+                Duration="2000" />
 
             <xamanimation:FlipAnimation
                 x:Key="FlipAnimation"
                 Target="{x:Reference FlipBox}"
-                Duration="250"/>
+                Duration="250" />
 
             <xamanimation:RotateToAnimation
                 x:Key="RotateToAnimation"
+                Rotation="360"
                 Target="{x:Reference RotateBox}"
-                Duration="750"
-                Rotation="360"/>
+                Duration="750" />
 
             <xamanimation:ScaleToAnimation
                 x:Key="ScaleToAnimation"
-                Target="{x:Reference ScaleBox}"
-                Scale="2"/>
+                Scale="2"
+                Target="{x:Reference ScaleBox}" />
 
             <xamanimation:TranslateToAnimation
                 x:Key="TranslateToAnimation"
                 Target="{x:Reference TranslateBox}"
                 TranslateX="200"
-                TranslateY="150"/>
+                TranslateY="150" />
 
             <xamanimation:TurnstileInAnimation
                 x:Key="TurnstileInAnimation"
                 Target="{x:Reference TurnstileBox}"
-                Duration="300"/>
+                Duration="300" />
 
             <xamanimation:TurnstileOutAnimation
                 x:Key="TurnstileOutAnimation"
                 Target="{x:Reference TurnstileBox}"
-                Duration="150"/>
+                Duration="150" />
 
-            <xamanimation:ShakeAnimation
-                x:Key="ShakeAnimation"
-                Target="{x:Reference ShakeBox}"/>
+            <xamanimation:ShakeAnimation x:Key="ShakeAnimation" Target="{x:Reference ShakeBox}" />
 
-            <xamanimation:HeartAnimation
-                x:Key="HeartAnimation"
-                Target="{x:Reference Heart}"/>
+            <xamanimation:HeartAnimation x:Key="HeartAnimation" Target="{x:Reference Heart}" />
 
             <xamanimation:JumpAnimation
                 x:Key="JumpAnimation"
                 Target="{x:Reference JumpBox}"
-                Duration="1500"/>
+                Duration="1500" />
 
             <Color x:Key="ToColor">#FF0000</Color>
 
@@ -86,389 +82,374 @@
                 x:Key="ColorAnimation"
                 Target="{x:Reference ColorBox}"
                 ToColor="{StaticResource ToColor}"
-                Duration="1500"/>
+                Duration="1500" />
 
-            <xamanimation:StoryBoard
-                x:Key="StoryBoard"
-                Target="{x:Reference StoryBoardBox}">
-                <xamanimation:ScaleToAnimation Scale="2"/>
+            <xamanimation:StoryBoard x:Key="StoryBoard" Target="{x:Reference StoryBoardBox}">
+                <xamanimation:ScaleToAnimation Scale="2" />
                 <xamanimation:ShakeAnimation />
             </xamanimation:StoryBoard>
 
             <xamanimation:RotateToAnimation
                 x:Key="DelayedAnimation"
-                Target="{x:Reference DelayedAnimationBox}"
-                Duration="750"
+                Delay="2000"
                 Rotation="360"
-                Delay="2000"/>
+                Target="{x:Reference DelayedAnimationBox}"
+                Duration="750" />
 
             <xamanimation:RelRotateToAnimation
                 x:Key="ForeverAnimation"
-                Target="{x:Reference ForeverAnimationBox}"
                 Easing="Linear"
-                Duration="1000"
+                RepeatForever="True"
                 Rotation="360"
-                RepeatForever="True"/>
-            
+                Target="{x:Reference ForeverAnimationBox}"
+                Duration="1000" />
+
         </ResourceDictionary>
     </Shell.Resources>
     <TabBar>
-        <!-- BASIC ANIMATIONS -->
-        <Tab                
-            Title="Animations">
+        <!--  BASIC ANIMATIONS  -->
+        <Tab Title="Animations">
             <ShellContent>
-                <ContentPage
-                    Title="Basic Animations">
+                <ContentPage Title="Basic Animations">
                     <ScrollView>
                         <StackLayout>
-                            <!-- BOUNCE -->
+                            <!--  BOUNCE  -->
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="*" />
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
-                                <Label 
+                                <Label
                                     Grid.Row="0"
-                                    Text="Bounce"
-                                    Style="{StaticResource TitleStyle}"/>
+                                    Style="{StaticResource TitleStyle}"
+                                    Text="Bounce" />
                                 <BoxView
-                                    Grid.Row="1"
                                     x:Name="BounceBox"
+                                    Grid.Row="1"
+                                    HeightRequest="120"
                                     HorizontalOptions="Center"
                                     VerticalOptions="Center"
-                                    HeightRequest="120"
                                     WidthRequest="120"
                                     Color="Red" />
                                 <Button
                                     Grid.Row="2"
                                     HorizontalOptions="Center"
-                                    VerticalOptions="End"
-                                    Text="Bounce In">
+                                    Text="Bounce In"
+                                    VerticalOptions="End">
                                     <Button.Triggers>
                                         <EventTrigger Event="Clicked">
-                                            <xamanimation:BeginAnimation
-                                                Animation="{StaticResource BounceInAnimation}" />
+                                            <xamanimation:BeginAnimation Animation="{StaticResource BounceInAnimation}" />
                                         </EventTrigger>
                                     </Button.Triggers>
                                 </Button>
                             </Grid>
-                            <!-- FADE -->
+                            <!--  FADE  -->
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="*" />
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
-                                <Label 
+                                <Label
                                     Grid.Row="0"
-                                    Text="Fade"
-                                    Style="{StaticResource TitleStyle}"/>
+                                    Style="{StaticResource TitleStyle}"
+                                    Text="Fade" />
                                 <BoxView
-                                    Grid.Row="1"
                                     x:Name="FadeBox"
+                                    Grid.Row="1"
+                                    HeightRequest="120"
                                     HorizontalOptions="Center"
                                     VerticalOptions="Center"
-                                    HeightRequest="120"
                                     WidthRequest="120"
                                     Color="Blue" />
                                 <Button
                                     Grid.Row="2"
                                     HorizontalOptions="Center"
-                                    VerticalOptions="End"
-                                    Text="Fade">
+                                    Text="Fade"
+                                    VerticalOptions="End">
                                     <Button.Triggers>
                                         <EventTrigger Event="Clicked">
-                                            <xamanimation:BeginAnimation
-                                                Animation="{StaticResource FadeToAnimation}" />
+                                            <xamanimation:BeginAnimation Animation="{StaticResource FadeToAnimation}" />
                                         </EventTrigger>
                                     </Button.Triggers>
                                 </Button>
                             </Grid>
-                            <!-- FLIP -->
+                            <!--  FLIP  -->
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="*" />
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
-                                <Label 
+                                <Label
                                     Grid.Row="0"
-                                    Text="Flip"
-                                    Style="{StaticResource TitleStyle}"/>
+                                    Style="{StaticResource TitleStyle}"
+                                    Text="Flip" />
                                 <BoxView
-                                    Grid.Row="1"
                                     x:Name="FlipBox"
+                                    Grid.Row="1"
+                                    HeightRequest="120"
                                     HorizontalOptions="Center"
                                     VerticalOptions="Center"
-                                    HeightRequest="120"
                                     WidthRequest="120"
                                     Color="Olive" />
                                 <Button
                                     Grid.Row="2"
                                     HorizontalOptions="Center"
-                                    VerticalOptions="End"
-                                    Text="Flip">
+                                    Text="Flip"
+                                    VerticalOptions="End">
                                     <Button.Triggers>
                                         <EventTrigger Event="Clicked">
-                                            <xamanimation:BeginAnimation
-                                                Animation="{StaticResource FlipAnimation}" />
+                                            <xamanimation:BeginAnimation Animation="{StaticResource FlipAnimation}" />
                                         </EventTrigger>
                                     </Button.Triggers>
                                 </Button>
                             </Grid>
-                            <!-- ROTATE -->
+                            <!--  ROTATE  -->
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="*" />
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
-                                <Label 
+                                <Label
                                     Grid.Row="0"
-                                    Text="Rotate"
-                                    Style="{StaticResource TitleStyle}"/>
+                                    Style="{StaticResource TitleStyle}"
+                                    Text="Rotate" />
                                 <BoxView
-                                    Grid.Row="1"
                                     x:Name="RotateBox"
+                                    Grid.Row="1"
+                                    HeightRequest="120"
                                     HorizontalOptions="Center"
                                     VerticalOptions="Center"
-                                    HeightRequest="120"
                                     WidthRequest="120"
                                     Color="Teal" />
                                 <Button
                                     Grid.Row="2"
                                     HorizontalOptions="Center"
-                                    VerticalOptions="End"
-                                    Text="Rotate">
+                                    Text="Rotate"
+                                    VerticalOptions="End">
                                     <Button.Triggers>
                                         <EventTrigger Event="Clicked">
-                                            <xamanimation:BeginAnimation
-                                                Animation="{StaticResource RotateToAnimation}" />
+                                            <xamanimation:BeginAnimation Animation="{StaticResource RotateToAnimation}" />
                                         </EventTrigger>
                                     </Button.Triggers>
                                 </Button>
                             </Grid>
-                            <!-- SCALE -->
+                            <!--  SCALE  -->
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="*" />
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
-                                <Label 
+                                <Label
                                     Grid.Row="0"
-                                    Text="Scale"
-                                    Style="{StaticResource TitleStyle}"/>
+                                    Style="{StaticResource TitleStyle}"
+                                    Text="Scale" />
                                 <BoxView
-                                    Grid.Row="1"
                                     x:Name="ScaleBox"
+                                    Grid.Row="1"
+                                    HeightRequest="120"
                                     HorizontalOptions="Center"
                                     VerticalOptions="Center"
-                                    HeightRequest="120"
                                     WidthRequest="120"
                                     Color="Fuchsia" />
                                 <Button
                                     Grid.Row="2"
                                     HorizontalOptions="Center"
-                                    VerticalOptions="End"
-                                    Text="Scale">
+                                    Text="Scale"
+                                    VerticalOptions="End">
                                     <Button.Triggers>
                                         <EventTrigger Event="Clicked">
-                                            <xamanimation:BeginAnimation
-                                                Animation="{StaticResource ScaleToAnimation}" />
+                                            <xamanimation:BeginAnimation Animation="{StaticResource ScaleToAnimation}" />
                                         </EventTrigger>
                                     </Button.Triggers>
                                 </Button>
                             </Grid>
-                            <!-- TRANSLATE -->
+                            <!--  TRANSLATE  -->
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="*" />
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
-                                <Label 
+                                <Label
                                     Grid.Row="0"
-                                    Text="Translate"
-                                    Style="{StaticResource TitleStyle}"/>
+                                    Style="{StaticResource TitleStyle}"
+                                    Text="Translate" />
                                 <BoxView
-                                    Grid.Row="1"
                                     x:Name="TranslateBox"
+                                    Grid.Row="1"
+                                    HeightRequest="120"
                                     HorizontalOptions="Center"
                                     VerticalOptions="Center"
-                                    HeightRequest="120"
                                     WidthRequest="120"
                                     Color="Purple" />
                                 <Button
                                     Grid.Row="2"
                                     HorizontalOptions="Center"
-                                    VerticalOptions="End"
-                                    Text="Translate">
+                                    Text="Translate"
+                                    VerticalOptions="End">
                                     <Button.Triggers>
                                         <EventTrigger Event="Clicked">
-                                            <xamanimation:BeginAnimation
-                                                Animation="{StaticResource TranslateToAnimation}" />
+                                            <xamanimation:BeginAnimation Animation="{StaticResource TranslateToAnimation}" />
                                         </EventTrigger>
                                     </Button.Triggers>
                                 </Button>
                             </Grid>
-                            <!-- TURNSTILE -->
+                            <!--  TURNSTILE  -->
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="*" />
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
-                                <Label 
+                                <Label
                                     Grid.Row="0"
-                                    Text="Turnstile"
-                                    Style="{StaticResource TitleStyle}"/>
+                                    Style="{StaticResource TitleStyle}"
+                                    Text="Turnstile" />
                                 <BoxView
-                                    Grid.Row="1"
                                     x:Name="TurnstileBox"
+                                    Grid.Row="1"
+                                    HeightRequest="120"
                                     HorizontalOptions="Center"
                                     VerticalOptions="Center"
-                                    HeightRequest="120"
                                     WidthRequest="120"
                                     Color="Lime" />
                                 <Button
                                     Grid.Row="2"
                                     HorizontalOptions="Center"
-                                    VerticalOptions="End"
-                                    Text="Turnstile Out">
+                                    Text="Turnstile Out"
+                                    VerticalOptions="End">
                                     <Button.Triggers>
                                         <EventTrigger Event="Clicked">
-                                            <xamanimation:BeginAnimation
-                                                Animation="{StaticResource TurnstileOutAnimation}" />
+                                            <xamanimation:BeginAnimation Animation="{StaticResource TurnstileOutAnimation}" />
                                         </EventTrigger>
                                     </Button.Triggers>
                                 </Button>
                             </Grid>
-                            <!-- SHAKE -->
+                            <!--  SHAKE  -->
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="*" />
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
-                                <Label 
+                                <Label
                                     Grid.Row="0"
-                                    Text="Shake"
-                                    Style="{StaticResource TitleStyle}"/>
+                                    Style="{StaticResource TitleStyle}"
+                                    Text="Shake" />
                                 <BoxView
-                                    Grid.Row="1"
                                     x:Name="ShakeBox"
+                                    Grid.Row="1"
+                                    HeightRequest="120"
                                     HorizontalOptions="Center"
                                     VerticalOptions="Center"
-                                    HeightRequest="120"
                                     WidthRequest="120"
                                     Color="Silver" />
                                 <Button
                                     Grid.Row="2"
                                     HorizontalOptions="Center"
-                                    VerticalOptions="End"
-                                    Text="Shake">
+                                    Text="Shake"
+                                    VerticalOptions="End">
                                     <Button.Triggers>
                                         <EventTrigger Event="Clicked">
-                                            <xamanimation:BeginAnimation
-                                                Animation="{StaticResource ShakeAnimation}" />
+                                            <xamanimation:BeginAnimation Animation="{StaticResource ShakeAnimation}" />
                                         </EventTrigger>
                                     </Button.Triggers>
                                 </Button>
                             </Grid>
-                            <!-- BREATHING -->
+                            <!--  BREATHING  -->
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="*" />
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
-                                <Label 
+                                <Label
                                     Grid.Row="0"
-                                    Text="Breathing"
-                                    Style="{StaticResource TitleStyle}"/>
+                                    Style="{StaticResource TitleStyle}"
+                                    Text="Breathing" />
                                 <Image
-                                    Grid.Row="1"
                                     x:Name="Heart"
-                                    Source="heart.png"
-                                    HorizontalOptions="Center"
-                                    VerticalOptions="Center"
+                                    Grid.Row="1"
                                     HeightRequest="120"
-                                    WidthRequest="120"/>
+                                    HorizontalOptions="Center"
+                                    Source="heart.png"
+                                    VerticalOptions="Center"
+                                    WidthRequest="120" />
                                 <Button
                                     Grid.Row="2"
                                     HorizontalOptions="Center"
-                                    VerticalOptions="End"
-                                    Text="Breath">
+                                    Text="Breath"
+                                    VerticalOptions="End">
                                     <Button.Triggers>
                                         <EventTrigger Event="Clicked">
-                                            <xamanimation:BeginAnimation
-                                                Animation="{StaticResource HeartAnimation}" />
+                                            <xamanimation:BeginAnimation Animation="{StaticResource HeartAnimation}" />
                                         </EventTrigger>
                                     </Button.Triggers>
                                 </Button>
                             </Grid>
-                            <!-- JUMP -->
+                            <!--  JUMP  -->
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="*" />
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
-                                <Label 
+                                <Label
                                     Grid.Row="0"
-                                    Text="Jump"
-                                    Style="{StaticResource TitleStyle}"/>
+                                    Style="{StaticResource TitleStyle}"
+                                    Text="Jump" />
                                 <BoxView
-                                    Grid.Row="1"
                                     x:Name="JumpBox"
+                                    Grid.Row="1"
+                                    HeightRequest="120"
                                     HorizontalOptions="Center"
                                     VerticalOptions="Center"
-                                    HeightRequest="120"
                                     WidthRequest="120"
                                     Color="Aqua" />
                                 <Button
                                     Grid.Row="2"
                                     HorizontalOptions="Center"
-                                    VerticalOptions="End"
-                                    Text="Jump">
+                                    Text="Jump"
+                                    VerticalOptions="End">
                                     <Button.Triggers>
                                         <EventTrigger Event="Clicked">
-                                            <xamanimation:BeginAnimation
-                                                Animation="{StaticResource JumpAnimation}" />
+                                            <xamanimation:BeginAnimation Animation="{StaticResource JumpAnimation}" />
                                         </EventTrigger>
                                     </Button.Triggers>
                                 </Button>
                             </Grid>
-                            <!-- COLOR -->
+                            <!--  COLOR  -->
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="*" />
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
-                                <Label 
+                                <Label
                                     Grid.Row="0"
-                                    Text="Color"
-                                    Style="{StaticResource TitleStyle}"/>
+                                    Style="{StaticResource TitleStyle}"
+                                    Text="Color" />
                                 <Grid
-                                    Grid.Row="1"
                                     x:Name="ColorBox"
+                                    Grid.Row="1"
+                                    BackgroundColor="Green"
+                                    HeightRequest="120"
                                     HorizontalOptions="Center"
                                     VerticalOptions="Center"
-                                    HeightRequest="120"
-                                    WidthRequest="120"
-                                    BackgroundColor="Green" />
+                                    WidthRequest="120" />
                                 <Button
                                     Grid.Row="2"
                                     HorizontalOptions="Center"
-                                    VerticalOptions="End"
-                                    Text="Color">
+                                    Text="Color"
+                                    VerticalOptions="End">
                                     <Button.Triggers>
                                         <EventTrigger Event="Clicked">
-                                            <xamanimation:BeginAnimation
-                                                Animation="{StaticResource ColorAnimation}" />
+                                            <xamanimation:BeginAnimation Animation="{StaticResource ColorAnimation}" />
                                         </EventTrigger>
                                     </Button.Triggers>
                                 </Button>
@@ -478,34 +459,31 @@
                 </ContentPage>
             </ShellContent>
         </Tab>
-        <!-- STORYBOARD -->
-        <Tab
-            Title="Storyboards">
+        <!--  STORYBOARD  -->
+        <Tab Title="Storyboards">
             <ShellContent>
-                <ContentPage 
-                    Title="StoryBoards">
+                <ContentPage Title="StoryBoards">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <BoxView
-                            Grid.Row="0"
                             x:Name="StoryBoardBox"
+                            Grid.Row="0"
+                            HeightRequest="120"
                             HorizontalOptions="Center"
                             VerticalOptions="Center"
-                            HeightRequest="120"
                             WidthRequest="120"
                             Color="Silver" />
                         <Button
                             Grid.Row="1"
                             HorizontalOptions="Center"
-                            VerticalOptions="End"
-                            Text="StoryBoard">
+                            Text="StoryBoard"
+                            VerticalOptions="End">
                             <Button.Triggers>
                                 <EventTrigger Event="Clicked">
-                                    <xamanimation:BeginAnimation
-                                        Animation="{StaticResource StoryBoard}" />
+                                    <xamanimation:BeginAnimation Animation="{StaticResource StoryBoard}" />
                                 </EventTrigger>
                             </Button.Triggers>
                         </Button>
@@ -513,65 +491,60 @@
                 </ContentPage>
             </ShellContent>
         </Tab>
-        <!-- ANIMATION EXTENSIONS -->
-        <Tab
-            Title="Extensions">
+        <!--  ANIMATION EXTENSIONS  -->
+        <Tab Title="Extensions">
             <ShellContent>
-                <ContentPage 
-                    Title="Animation Extensions">
+                <ContentPage Title="Animation Extensions">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <BoxView
-                            Grid.Row="0"
                             x:Name="AnimationBox"
+                            Grid.Row="0"
+                            HeightRequest="120"
                             HorizontalOptions="Center"
                             VerticalOptions="Center"
-                            HeightRequest="120"
                             WidthRequest="120"
                             Color="Silver" />
                         <Button
                             x:Name="AnimationExtensionButton"
                             Grid.Row="1"
                             HorizontalOptions="Center"
-                            VerticalOptions="End"
-                            Text="Animate" />
+                            Text="Animate"
+                            VerticalOptions="End" />
                     </Grid>
                 </ContentPage>
             </ShellContent>
         </Tab>
-        <!-- DELAYED ANIMATIONS -->
-        <Tab
-            Title="Delay">
+        <!--  DELAYED ANIMATIONS  -->
+        <Tab Title="Delay">
             <ShellContent>
-                <ContentPage 
-                    Title="Delayed Animations">
+                <ContentPage Title="Delayed Animations">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <BoxView
-                            Grid.Row="0"
                             x:Name="DelayedAnimationBox"
+                            Grid.Row="0"
+                            HeightRequest="120"
                             HorizontalOptions="Center"
                             VerticalOptions="Center"
-                            HeightRequest="120"
                             WidthRequest="120"
                             Color="Orange" />
                         <Button
                             x:Name="DelayedAnimationButton"
                             Grid.Row="1"
                             HorizontalOptions="Center"
+                            Text="Animate after 2s"
                             VerticalOptions="End"
-                            WidthRequest="150"
-                            Text="Animate after 2s">
+                            WidthRequest="150">
                             <Button.Triggers>
                                 <EventTrigger Event="Clicked">
-                                    <xamanimation:BeginAnimation
-                                        Animation="{StaticResource DelayedAnimation}" />
+                                    <xamanimation:BeginAnimation Animation="{StaticResource DelayedAnimation}" />
                                 </EventTrigger>
                             </Button.Triggers>
                         </Button>
@@ -579,45 +552,39 @@
                 </ContentPage>
             </ShellContent>
         </Tab>
-        <!-- REPEAT ANIMATIONS -->
-        <Tab
-            Title="Repeat">
+        <!--  REPEAT ANIMATIONS  -->
+        <Tab Title="Repeat">
             <ShellContent>
-                <ContentPage 
-                    Title="Repeat Forever Animations">
+                <ContentPage Title="Repeat Forever Animations">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <BoxView
-                            Grid.Row="0"
                             x:Name="ForeverAnimationBox"
+                            Grid.Row="0"
+                            HeightRequest="120"
                             HorizontalOptions="Center"
                             VerticalOptions="Center"
-                            HeightRequest="120"
                             WidthRequest="120"
                             Color="Green" />
                         <StackLayout
                             Grid.Row="1"
-                            Orientation="Horizontal"
                             HorizontalOptions="Center"
+                            Orientation="Horizontal"
                             VerticalOptions="End">
-                            <Button
-                                Text="Start">
+                            <Button Text="Start">
                                 <Button.Triggers>
                                     <EventTrigger Event="Clicked">
-                                        <xamanimation:BeginAnimation
-                                    Animation="{StaticResource ForeverAnimation}" />
+                                        <xamanimation:BeginAnimation Animation="{StaticResource ForeverAnimation}" />
                                     </EventTrigger>
                                 </Button.Triggers>
                             </Button>
-                            <Button
-                                Text="Stop">
+                            <Button Text="Stop">
                                 <Button.Triggers>
                                     <EventTrigger Event="Clicked">
-                                        <xamanimation:EndAnimation
-                                            Animation="{StaticResource ForeverAnimation}" />
+                                        <xamanimation:EndAnimation Animation="{StaticResource ForeverAnimation}" />
                                     </EventTrigger>
                                 </Button.Triggers>
                             </Button>
@@ -626,31 +593,32 @@
                 </ContentPage>
             </ShellContent>
         </Tab>
-        <!-- TRIGGERS -->
-        <Tab
-            Title="Triggers">
+        <!--  TRIGGERS  -->
+        <Tab Title="Triggers">
             <ShellContent>
-                <ContentPage 
-                    Title="More Triggers">
+                <ContentPage Title="More Triggers">
                     <StackLayout>
-                        <Label 
-                            Text="Animate Double and Color"/>
-                        <Entry 
-                            FontSize="16" 
-                            BackgroundColor="LightGray">
+                        <Label Text="Animate Double and Color" />
+                        <Entry BackgroundColor="LightGray" FontSize="16">
                             <Entry.Triggers>
                                 <Trigger TargetType="Entry" Property="IsFocused" Value="True">
                                     <Trigger.EnterActions>
-                                        <xamanimation:AnimateDouble TargetProperty="Entry.FontSize" To="24"/>
-                                        <xamanimation:AnimateColor TargetProperty="Entry.TextColor" To="Red"/>
-                                        <xamanimation:AnimateColor TargetProperty="VisualElement.BackgroundColor" To="Yellow" Delay="1000"/>
-                                        <xamanimation:AnimateDouble TargetProperty="VisualElement.Rotation" To="12" Duration="100"/>
+                                        <xamanimation:AnimateDouble TargetProperty="Entry.FontSize" To="24" />
+                                        <xamanimation:AnimateColor TargetProperty="Entry.TextColor" To="Red" />
+                                        <xamanimation:AnimateColor
+                                            Delay="1000"
+                                            TargetProperty="VisualElement.BackgroundColor"
+                                            To="Yellow" />
+                                        <xamanimation:AnimateDouble
+                                            TargetProperty="VisualElement.Rotation"
+                                            To="12"
+                                            Duration="100" />
                                     </Trigger.EnterActions>
                                     <Trigger.ExitActions>
-                                        <xamanimation:AnimateDouble TargetProperty="{x:Static Entry.FontSizeProperty}" To="16"/>
-                                        <xamanimation:AnimateColor TargetProperty="{x:Static Entry.TextColorProperty}" To="Black"/>
-                                        <xamanimation:AnimateColor TargetProperty="{x:Static VisualElement.BackgroundColorProperty}" To="LightGray"/>
-                                        <xamanimation:AnimateDouble TargetProperty="{x:Static VisualElement.RotationProperty}" To="0"/>
+                                        <xamanimation:AnimateDouble TargetProperty="{x:Static Entry.FontSizeProperty}" To="16" />
+                                        <xamanimation:AnimateColor TargetProperty="{x:Static Entry.TextColorProperty}" To="Black" />
+                                        <xamanimation:AnimateColor TargetProperty="{x:Static VisualElement.BackgroundColorProperty}" To="LightGray" />
+                                        <xamanimation:AnimateDouble TargetProperty="{x:Static VisualElement.RotationProperty}" To="0" />
                                     </Trigger.ExitActions>
                                 </Trigger>
                             </Entry.Triggers>
@@ -659,12 +627,10 @@
                 </ContentPage>
             </ShellContent>
         </Tab>
-        <!-- PROGRESS ANIMATIONS -->
-        <Tab
-            Title="Progress">
+        <!--  PROGRESS ANIMATIONS  -->
+        <Tab Title="Progress">
             <ShellContent>
-                <ContentPage 
-                    Title="Progress Animations">
+                <ContentPage Title="Progress Animations">
                     <ScrollView>
                         <VisualElement.Behaviors>
                             <xamanimation:ScrollViewScrollBehavior x:Name="ScrollBehavior" />
@@ -675,109 +641,109 @@
                                 <RowDefinition Height="24" />
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
-                            <!-- HEADER IMAGE -->
+                            <!--  HEADER IMAGE  -->
                             <Image
+                                x:Name="HeaderImage"
                                 Grid.Row="0"
                                 Grid.RowSpan="2"
-                                x:Name="HeaderImage"
-                                Source="monkeys.jpg"
                                 Aspect="AspectFill"
-                                HorizontalOptions="FillAndExpand">
+                                HorizontalOptions="FillAndExpand"
+                                Source="monkeys.jpg">
                                 <VisualElement.Behaviors>
                                     <xamanimation:AnimateProgressDouble
-                                        TargetProperty="VisualElement.TranslationY"
-                                        Progress="{Binding ScrollY, Source={x:Reference ScrollBehavior}}" 
-                                        Minimum="0"
                                         Maximum="200"
+                                        Minimum="0"
+                                        Progress="{Binding ScrollY, Source={x:Reference ScrollBehavior}}"
+                                        TargetProperty="VisualElement.TranslationY"
                                         From="0"
-                                        To="100"/>
+                                        To="100" />
                                 </VisualElement.Behaviors>
                             </Image>
-                            <BoxView 
+                            <BoxView
                                 Grid.Row="1"
                                 BackgroundColor="Red"
                                 CornerRadius="24, 24, 0, 0">
                                 <VisualElement.Behaviors>
                                     <xamanimation:AnimateProgressColor
+                                        Maximum="200"
+                                        Minimum="0"
+                                        Progress="{Binding ScrollY, Source={x:Reference ScrollBehavior}}"
                                         TargetProperty="VisualElement.BackgroundColor"
-                                        Progress="{Binding ScrollY, Source={x:Reference ScrollBehavior}}" 
-                                        Minimum="0"
-                                        Maximum="200"
                                         From="Black"
-                                        To="Red"/>
+                                        To="Red" />
                                     <xamanimation:AnimateProgressCornerRadius
-                                        TargetProperty="BoxView.CornerRadius"
-                                        Progress="{Binding ScrollY, Source={x:Reference ScrollBehavior}}" 
-                                        Minimum="0"
                                         Maximum="200"
+                                        Minimum="0"
+                                        Progress="{Binding ScrollY, Source={x:Reference ScrollBehavior}}"
+                                        TargetProperty="BoxView.CornerRadius"
                                         From="24, 24, 0, 0"
-                                        To="0,0,0,0"/>
+                                        To="0,0,0,0" />
                                 </VisualElement.Behaviors>
                             </BoxView>
-                            <Grid 
+                            <Grid
                                 Grid.Row="2"
-                                BackgroundColor="Black" 
-                                HeightRequest="500"
-                                Padding="12">
+                                Padding="12"
+                                BackgroundColor="Black"
+                                HeightRequest="500">
                                 <VisualElement.Behaviors>
                                     <xamanimation:AnimateProgressColor
-                                        TargetProperty="VisualElement.BackgroundColor"
-                                        Progress="{Binding ScrollY, Source={x:Reference ScrollBehavior}}" 
-                                        Minimum="0"
                                         Maximum="200"
+                                        Minimum="0"
+                                        Progress="{Binding ScrollY, Source={x:Reference ScrollBehavior}}"
+                                        TargetProperty="VisualElement.BackgroundColor"
                                         From="Black"
-                                        To="Red"/>
+                                        To="Red" />
                                 </VisualElement.Behaviors>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="80"/>
-                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="80" />
+                                    <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
-                                <Label 
-                                    Grid.Column="0"
+                                <Label
                                     Grid.Row="0"
+                                    Grid.Column="0"
                                     Text="ScrollY:"
                                     TextColor="White"
-                                    VerticalOptions="Center"/>
-                                <Label 
-                                    Grid.Column="1"
+                                    VerticalOptions="Center" />
+                                <Label
                                     Grid.Row="0"
+                                    Grid.Column="1"
                                     Text="{Binding Source={x:Reference ScrollBehavior}, Path=ScrollY}"
                                     TextColor="White"
                                     VerticalOptions="Center">
                                     <VisualElement.Behaviors>
                                         <xamanimation:AnimateProgressDouble
-                                            TargetProperty="Label.FontSize"
-                                            Progress="{Binding ScrollY, Source={x:Reference ScrollBehavior}}" 
-                                            Minimum="0"
                                             Maximum="200"
+                                            Minimum="0"
+                                            Progress="{Binding ScrollY, Source={x:Reference ScrollBehavior}}"
+                                            TargetProperty="Label.FontSize"
                                             From="12"
-                                            To="24"/>
+                                            To="24" />
                                     </VisualElement.Behaviors>
                                 </Label>
-                                <Label 
-                                    Grid.Column="0"
+                                <Label
                                     Grid.Row="1"
+                                    Grid.Column="0"
                                     Text="Header TranslationY:"
                                     TextColor="White"
-                                    VerticalOptions="Center"/>
-                                <Label 
-                                    Grid.Column="1"
+                                    VerticalOptions="Center" />
+                                <Label
                                     Grid.Row="1"
+                                    Grid.Column="1"
                                     Text="{Binding Source={x:Reference HeaderImage}, Path=TranslationY, StringFormat='{0:N}'}"
                                     TextColor="White"
                                     VerticalOptions="Center">
                                     <VisualElement.Behaviors>
                                         <xamanimation:AnimateProgressDouble
-                                            TargetProperty="Label.FontSize"
-                                            Progress="{Binding ScrollY, Source={x:Reference ScrollBehavior}}" 
-                                            Minimum="0"
                                             Maximum="200"
+                                            Minimum="0"
+                                            Progress="{Binding ScrollY, Source={x:Reference ScrollBehavior}}"
+                                            TargetProperty="Label.FontSize"
                                             From="12"
-                                            To="24"/>
+                                            To="24" />
                                     </VisualElement.Behaviors>
                                 </Label>
                             </Grid>
@@ -786,21 +752,18 @@
                 </ContentPage>
             </ShellContent>
         </Tab>
-        <!-- TRANSITIONS -->
-        <Tab
-            Title="Transitions">
+        <!--  TRANSITIONS  -->
+        <Tab Title="Transitions">
             <ShellContent>
-                <ContentPage 
-                    Title="Entrance Transitions">
-                    <Grid
-                        x:Name="EntranceGrid">
-                        <FlexLayout 
-                            Wrap="Wrap"
+                <ContentPage Title="Entrance Transitions">
+                    <Grid x:Name="EntranceGrid">
+                        <FlexLayout
+                            Padding="6"
+                            AlignContent="Start"
+                            AlignItems="Start"
                             Direction="Row"
                             JustifyContent="Start"
-                            AlignItems="Start"
-                            AlignContent="Start"
-                            Padding="6">
+                            Wrap="Wrap">
                             <FlexLayout.Resources>
                                 <Style TargetType="BoxView">
                                     <Setter Property="HorizontalOptions" Value="Start" />
@@ -810,27 +773,21 @@
                                 </Style>
                             </FlexLayout.Resources>
                             <FlexLayout.Behaviors>
-                                <xamanimation:EntranceTransition
-                                    Duration="1000"/>
+                                <xamanimation:EntranceTransition Duration="1000" />
                             </FlexLayout.Behaviors>
-                            <BoxView
-                                Color="Red" />
-                            <BoxView 
-                                Color="Blue" />
-                            <BoxView 
-                                Color="Green" />
-                            <BoxView 
-                                Color="Yellow" />
-                            <BoxView 
-                                Color="Pink" />
-                            <BoxView 
-                                Color="Purple" />
-                            <BoxView 
-                                Color="Black" />
-                            <BoxView 
-                                Color="Orange" />
-                            <BoxView 
-                                Color="LightBlue" />
+                            <BoxView Color="Red" />
+                            <BoxView Color="Blue" />
+                            <BoxView Color="Green" />
+                            <BoxView Color="Yellow" />
+                            <BoxView Color="Pink" />
+                            <BoxView Color="Purple" />
+                            <BoxView Color="Black" />
+                            <BoxView Color="Orange" />
+                            <BoxView Color="LightBlue" />
+                            <StackLayout xamanimation:Transition.CascadeTransition="True">
+                                <BoxView Color="Magenta" />
+                                <BoxView Color="OliveDrab" />
+                            </StackLayout>
                         </FlexLayout>
                     </Grid>
                 </ContentPage>

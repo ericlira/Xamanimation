@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<TargetFramework>netstandard2.0</TargetFramework>
 		<PackageId>Xamanimation</PackageId>
-		<Version>1.3.0</Version>
+		<Version>1.3.2</Version>
 		<Authors>Javier Suárez Ruiz</Authors>
 		<Description>Animations library for Xamarin Forms</Description>
 		<PackageProjectUrl>https://github.com/jsuarezruiz/Xamanimation</PackageProjectUrl>
@@ -12,6 +12,9 @@
 		<RepositoryUrl>https://github.com/jsuarezruiz/Xamanimation</RepositoryUrl>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageTags>community, xamarin, android, xamarin.forms, ios, uwp, animations, transitions</PackageTags>
+		<AssemblyVersion>1.3.2.0</AssemblyVersion>
+		<FileVersion>1.3.2.0</FileVersion>
+		<PackageReleaseNotes>Entrance animation with option to stop cascading and animating when IsVisible is set to true</PackageReleaseNotes>
 	</PropertyGroup>
 
 	<ItemGroup>
